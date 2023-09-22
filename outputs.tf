@@ -3,7 +3,7 @@ output "product_database_address" {
 }
 
 output "database_static_path" {
-  value       = vault_mount.static.path
+  value       = var.use_vault_for_db_password ? vault_mount.static.0.path : aws_db_instance.database.master_user_secret.0.secret_arn
   description = "Path to static secrets related to database service"
 }
 

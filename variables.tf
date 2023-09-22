@@ -55,6 +55,12 @@ variable "db_name" {
   description = "Database name to create in instance"
 }
 
+variable "use_vault_for_db_password" {
+  type        = bool
+  description = "Use Vault for database password"
+  default     = true
+}
+
 locals {
   tags = {
     Environment   = var.environment
