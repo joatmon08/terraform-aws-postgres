@@ -11,6 +11,7 @@ variable "boundary_username" {
 variable "boundary_password" {
   type        = string
   description = "Boundary password"
+  sensitive   = true
 }
 
 variable "boundary_scope_id" {
@@ -23,9 +24,32 @@ variable "consul_address" {
   description = "Consul address"
 }
 
+variable "consul_token" {
+  type        = string
+  description = "Consul token"
+  sensitive   = true
+}
+
 variable "consul_datacenter" {
   type        = string
   description = "Consul datacenter"
+  default     = null
+}
+
+variable "vault_address" {
+  type        = string
+  description = "Vault address"
+}
+
+variable "vault_token" {
+  type        = string
+  description = "Vault token"
+  sensitive   = true
+}
+
+variable "vault_namespace" {
+  type        = string
+  description = "Vault namespace"
 }
 
 variable "postgres_db_version" {

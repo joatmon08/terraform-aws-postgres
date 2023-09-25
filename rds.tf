@@ -25,7 +25,7 @@ resource "aws_db_instance" "database" {
   instance_class              = var.db_instance_class
   db_name                     = var.db_name
   identifier                  = "${var.business_unit}-${var.db_name}"
-  manage_master_user_password = !var.use_vault_for_db_password
+  manage_master_user_password = var.use_vault_for_db_password ? null : true
   username                    = random_pet.database.id
   password                    = var.use_vault_for_db_password ? random_password.database.result : null
   db_subnet_group_name        = local.db_subnet_group_name

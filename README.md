@@ -1,6 +1,7 @@
 # terraform-aws-postgres
 
 Sample module creating RDS PostgreSQL database, Boundary targets, and Consul registration.
+It is intended to run with an operator, which means defining provider variables inline.
 
 Full demo at: https://github.com/joatmon08/hashicorp-stack-demoapp
 
@@ -54,12 +55,22 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_boundary_address"></a> [boundary\_address](#input\_boundary\_address) | Boundary address | `string` | n/a | yes |
+| <a name="input_boundary_password"></a> [boundary\_password](#input\_boundary\_password) | Boundary password | `string` | n/a | yes |
 | <a name="input_boundary_scope_id"></a> [boundary\_scope\_id](#input\_boundary\_scope\_id) | Boundary scope ID for setting up target to database | `string` | n/a | yes |
+| <a name="input_boundary_username"></a> [boundary\_username](#input\_boundary\_username) | Boundary address | `string` | n/a | yes |
 | <a name="input_business_unit"></a> [business\_unit](#input\_business\_unit) | Business unit. Also used as database subnet group | `string` | n/a | yes |
+| <a name="input_consul_address"></a> [consul\_address](#input\_consul\_address) | Consul address | `string` | n/a | yes |
+| <a name="input_consul_datacenter"></a> [consul\_datacenter](#input\_consul\_datacenter) | Consul datacenter | `string` | `null` | no |
+| <a name="input_consul_token"></a> [consul\_token](#input\_consul\_token) | Consul token | `string` | n/a | yes |
 | <a name="input_db_instance_class"></a> [db\_instance\_class](#input\_db\_instance\_class) | Database instance class | `string` | `"db.t3.micro"` | no |
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Database name to create in instance | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment | `string` | n/a | yes |
 | <a name="input_postgres_db_version"></a> [postgres\_db\_version](#input\_postgres\_db\_version) | PostgreSQL version | `string` | `"13.11"` | no |
+| <a name="input_use_vault_for_db_password"></a> [use\_vault\_for\_db\_password](#input\_use\_vault\_for\_db\_password) | Use Vault for database password | `bool` | `true` | no |
+| <a name="input_vault_address"></a> [vault\_address](#input\_vault\_address) | Vault address | `string` | n/a | yes |
+| <a name="input_vault_namespace"></a> [vault\_namespace](#input\_vault\_namespace) | Vault namespace | `string` | n/a | yes |
+| <a name="input_vault_token"></a> [vault\_token](#input\_vault\_token) | Vault token | `string` | n/a | yes |
 
 ## Outputs
 

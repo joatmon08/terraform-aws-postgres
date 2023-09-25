@@ -1,22 +1,23 @@
 variables {
-  business_unit = "hashicups"
-  environment   = "production"
+  name          = "modules"
+  business_unit = "modules"
+  environment   = "dev"
   db_name       = "test"
 }
 
-provider "aws" {}
+provider "aws" {
+  region = "us-west-2"
+  default_tags {
+    tags = {
+      Business_Unit = "modules"
+      Environment   = "dev"
+      Automation    = "terraform"
+      Repo          = "terraform-aws-postgres"
+    }
+  }
+}
 
 provider "vault" {}
-
-provider "boundary" {
-  ## possible bug with Boundary provider, not picking up BOUNDARY_ADDR
-  addr = "https://effd00f1-c687-456d-8b7e-354f696a4c8b.boundary.hashicorp.cloud"
-}
-
-provider "consul" {
-  address    = "https://hashicups.consul.11eaeb92-853e-2d98-8405-0242ac110009.aws.hashicorp.cloud"
-  datacenter = "hashicups"
-}
 
 run "setup" {
   command = apply
@@ -36,6 +37,11 @@ run "database" {
   }
 
   assert {
+    condition     = aws_db_instance.database.manage_master_user_password == null
+    error_message = "Database password should be stored in Vault and not managed by AWS"
+  }
+
+  assert {
     condition     = aws_db_instance.database.status == "available"
     error_message = "Database in module should be available"
   }
@@ -50,3 +56,5 @@ run "database" {
     error_message = "Database service not registered in Consul"
   }
 }
+
+## Boundary has no data sources
