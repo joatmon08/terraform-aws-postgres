@@ -1,5 +1,4 @@
 variables {
-  name          = "modules"
   business_unit = "modules"
   environment   = "dev"
   db_name       = "test"
@@ -16,8 +15,6 @@ provider "aws" {
     }
   }
 }
-
-provider "vault" {}
 
 run "setup" {
   command = apply
@@ -47,7 +44,7 @@ run "database" {
   }
 
   assert {
-    condition     = data.vault_kv_secret_v2.postgres.data["username"] != null
+    condition     = data.vault_kv_secret_v2.postgres.0.data["username"] != null
     error_message = "Database in module should have admin credentials in Vault"
   }
 
