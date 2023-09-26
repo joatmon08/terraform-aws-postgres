@@ -1,3 +1,9 @@
+variable "configure_boundary" {
+  type        = bool
+  default     = false
+  description = "Configure boundary"
+}
+
 variable "name" {
   type        = string
   description = "Name of the EKS cluster"

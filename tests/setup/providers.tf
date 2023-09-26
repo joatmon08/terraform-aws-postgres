@@ -35,9 +35,3 @@ provider "aws" {
 provider "hcp" {
   project_id = var.hcp_project_id
 }
-
-provider "boundary" {
-  addr                   = hcp_boundary_cluster.main.cluster_url
-  auth_method_login_name = hcp_boundary_cluster.main.username
-  auth_method_password   = hcp_boundary_cluster.main.password
-}
