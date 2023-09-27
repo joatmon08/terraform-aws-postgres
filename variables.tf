@@ -58,6 +58,12 @@ variable "postgres_db_version" {
   description = "PostgreSQL version"
 }
 
+variable "postgres_port" {
+  type        = number
+  description = "Database port"
+  default     = 5432
+}
+
 variable "db_instance_class" {
   type        = string
   default     = "db.t3.micro"
@@ -83,6 +89,12 @@ variable "use_vault_for_db_password" {
   type        = bool
   description = "Use Vault for database password"
   default     = true
+}
+
+variable "vault_kubernetes_auth_path" {
+  type        = string
+  description = "Vault Kubernetes auth path"
+  default     = "kubernetes"
 }
 
 locals {
