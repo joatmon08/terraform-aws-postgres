@@ -44,10 +44,6 @@ module "vpc" {
     "kubernetes.io/cluster/${var.name}" = "shared"
     "kubernetes.io/role/internal-elb"   = "1"
   }
-
-  default_vpc_tags = {
-    HCP_Peer = jsonencode([var.hcp_cidr_block])
-  }
 }
 
 resource "aws_security_group" "database" {
@@ -68,7 +64,7 @@ resource "aws_security_group" "database" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.hcp_cidr_block]
   }
 
   egress {

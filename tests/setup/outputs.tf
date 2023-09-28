@@ -23,6 +23,15 @@ output "boundary" {
   sensitive = true
 }
 
+output "vault" {
+  value = {
+    address   = hcp_vault_cluster.main.vault_public_endpoint_url
+    token     = hcp_vault_cluster_admin_token.cluster.token
+    namespace = hcp_vault_cluster.main.namespace
+  }
+  sensitive = true
+}
+
 output "name" {
   value = var.name
 }
