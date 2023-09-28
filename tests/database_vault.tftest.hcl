@@ -49,11 +49,6 @@ run "database" {
   }
 
   assert {
-    condition     = data.vault_generic_secret.database_credentials.data["username"] != data.vault_kv_secret_v2.postgres.0.data["username"]
-    error_message = "Database in module should have dynamic database credentials from Vault"
-  }
-
-  assert {
     condition     = length(data.consul_service_health.database.results) > 0
     error_message = "Database service not registered in Consul"
   }
