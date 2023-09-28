@@ -35,7 +35,7 @@ data "vault_policy_document" "postgres" {
 
 resource "vault_policy" "postgres" {
   count  = var.use_vault_for_db_password ? 1 : 0
-  name   = "products-db-admin"
+  name   = "db-admin"
   policy = data.vault_policy_document.postgres.0.hcl
 }
 

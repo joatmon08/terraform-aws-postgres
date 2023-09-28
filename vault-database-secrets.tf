@@ -6,7 +6,7 @@ resource "vault_mount" "db" {
 resource "vault_database_secret_backend_connection" "db" {
   backend       = vault_mount.db.path
   name          = var.db_name
-  allowed_roles = ["*"]
+  allowed_roles = [var.db_name]
 
   postgresql {
     connection_url = "postgresql://{{username}}:{{password}}@${aws_db_instance.database.address}:${var.postgres_port}/${var.db_name}?sslmode=disable"

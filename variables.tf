@@ -70,9 +70,14 @@ variable "db_instance_class" {
   description = "Database instance class"
 }
 
+variable "org_name" {
+  type        = string
+  description = "Organization to search for VPC resources, including database subnet group"
+}
+
 variable "business_unit" {
   type        = string
-  description = "Business unit. Also used as database subnet group"
+  description = "Business unit"
 }
 
 variable "environment" {
@@ -101,7 +106,7 @@ locals {
   tags = {
     Environment   = var.environment
     Automation    = "terraform"
-    Business_Unit = var.business_unit
+    Business_Unit = var.org_name
   }
-  db_subnet_group_name = var.business_unit
+  db_subnet_group_name = var.org_name
 }
