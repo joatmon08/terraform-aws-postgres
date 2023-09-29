@@ -25,6 +25,8 @@ resource "boundary_target" "database" {
   name                     = "${var.business_unit}-database-postgres"
   description              = "${var.business_unit} Database Postgres Target"
   scope_id                 = var.boundary_scope_id
+  ingress_worker_filter    = "\"rds\" in \"/tags/type\""
+  egress_worker_filter     = "\"${var.org_name}\" in \"/tags/type\""
   session_connection_limit = 2
   default_port             = 5432
   host_source_ids = [
