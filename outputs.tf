@@ -15,3 +15,11 @@ output "database_secret_name" {
 output "boundary_target_postgres" {
   value = boundary_target.database.id
 }
+
+output "vault_paths" {
+  value = {
+    db      = "${vault_mount.db.path}/creds/${vault_database_secret_backend_role.db.name}"
+    encrypt = "${var.vault_transit_secrets_engine_mount}/encrypt/${vault_transit_secret_backend_key.transit.name}"
+    decrypt = "${var.vault_transit_secrets_engine_mount}/encrypt/${vault_transit_secret_backend_key.transit.name}"
+  }
+}

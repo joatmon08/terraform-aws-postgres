@@ -102,6 +102,18 @@ variable "vault_kubernetes_auth_path" {
   default     = "kubernetes"
 }
 
+variable "vault_transit_secrets_engine_mount" {
+  type        = string
+  description = "Override default Vault transit secrets engine mount"
+  default     = "transit"
+}
+
+variable "additional_service_account_names" {
+  type        = list(string)
+  description = "Additional service account names to allow access to database credentials"
+  default     = []
+}
+
 locals {
   tags = {
     Environment   = var.environment

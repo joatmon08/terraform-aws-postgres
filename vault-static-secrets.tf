@@ -24,21 +24,6 @@ resource "vault_kv_secret_v2" "postgres" {
 EOT
 }
 
-data "vault_policy_document" "postgres" {
-  count = var.use_vault_for_db_password ? 1 : 0
-  rule {
-    path         = "${vault_mount.static.0.path}/data/${local.database_secret_name}"
-    capabilities = ["read"]
-    description  = "Allow access to database admin username and password for database ${var.db_name} belonging to ${var.business_unit}"
-  }
-}
-
-resource "vault_policy" "postgres" {
-  count  = var.use_vault_for_db_password ? 1 : 0
-  name   = "db-admin"
-  policy = data.vault_policy_document.postgres.0.hcl
-}
-
 data "vault_kv_secret_v2" "postgres" {
   count = var.use_vault_for_db_password ? 1 : 0
   mount = vault_kv_secret_v2.postgres.0.mount
