@@ -41,6 +41,6 @@ resource "boundary_credential_library_vault" "database" {
   name                = "vault-database-${var.business_unit}"
   description         = "Credential library for ${var.business_unit} databases"
   credential_store_id = var.boundary_credentials_store_id
-  path                = "${vault_mount.db.path}/creds/${vault_database_secret_backend_role.db.name}"
+  path                = "${vault_kv_secret_v2.postgres.0.mount}/data/${vault_kv_secret_v2.postgres.0.name}"
   http_method         = "GET"
 }
