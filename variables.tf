@@ -19,6 +19,11 @@ variable "boundary_scope_id" {
   description = "Boundary scope ID for setting up target to database"
 }
 
+variable "boundary_credentials_store_id" {
+  type        = string
+  description = "Boundary credentials store ID"
+}
+
 variable "consul_address" {
   type        = string
   description = "Consul address"

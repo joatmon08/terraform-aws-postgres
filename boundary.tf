@@ -32,4 +32,15 @@ resource "boundary_target" "database" {
   host_source_ids = [
     boundary_host_set_static.database.id
   ]
+  brokered_credential_source_ids = [
+    boundary_credential_library_vault.database.id
+  ]
+}
+
+resource "boundary_credential_library_vault" "database" {
+  name                = "vault-database-${var.business_unit}"
+  description         = "Credential library for ${var.business_unit} databases"
+  credential_store_id = var.boundary_credentials_store_id
+  path                = "${vault_mount.db.path}/creds/${vault_database_secret_backend_role.db.name}"
+  http_method         = "GET"
 }
