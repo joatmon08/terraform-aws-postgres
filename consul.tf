@@ -30,7 +30,10 @@ resource "consul_config_entry" "service_defaults" {
   kind = "service-defaults"
 
   config_json = jsonencode({
-    Protocol = "tcp"
+    Protocol         = "tcp"
+    Expose           = {}
+    MeshGateway      = {}
+    TransparentProxy = {}
   })
 }
 
