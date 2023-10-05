@@ -119,6 +119,12 @@ variable "additional_service_account_names" {
   default     = []
 }
 
+variable "allow_major_version_upgrade" {
+  type        = bool
+  description = "Allow major version upgrades of database"
+  default     = true
+}
+
 locals {
   tags = {
     Environment   = var.environment

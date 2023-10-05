@@ -33,6 +33,7 @@ resource "aws_db_instance" "database" {
   skip_final_snapshot         = true
   storage_encrypted           = true
   copy_tags_to_snapshot       = true
+  allow_major_version_upgrade = var.allow_major_version_upgrade
 
   tags = local.tags
 }
