@@ -13,7 +13,11 @@ output "database_secret_name" {
 }
 
 output "boundary_target_postgres" {
-  value = boundary_target.database.id
+  value = boundary_target.database_admin.id
+}
+
+output "boundary_target_postgres_app" {
+  value = boundary_target.database_app.id
 }
 
 output "vault_paths" {
