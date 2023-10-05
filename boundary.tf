@@ -50,7 +50,7 @@ resource "boundary_target" "database_app" {
     boundary_host_set_static.database.id
   ]
   brokered_credential_source_ids = [
-    boundary_credential_library_vault.database_admin.id
+    boundary_credential_library_vault.database_app.id
   ]
 }
 
