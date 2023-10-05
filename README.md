@@ -73,7 +73,7 @@ No modules.
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Database name to create in instance | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment | `string` | n/a | yes |
 | <a name="input_org_name"></a> [org\_name](#input\_org\_name) | Organization to search for VPC resources, including database subnet group | `string` | n/a | yes |
-| <a name="input_postgres_db_version"></a> [postgres\_db\_version](#input\_postgres\_db\_version) | PostgreSQL version | `string` | `"13.11"` | no |
+| <a name="input_postgres_db_version"></a> [postgres\_db\_version](#input\_postgres\_db\_version) | PostgreSQL version | `string` | `"14.9"` | no |
 | <a name="input_postgres_port"></a> [postgres\_port](#input\_postgres\_port) | Database port | `number` | `5432` | no |
 | <a name="input_use_vault_for_db_password"></a> [use\_vault\_for\_db\_password](#input\_use\_vault\_for\_db\_password) | Use Vault for database password | `bool` | `true` | no |
 | <a name="input_vault_address"></a> [vault\_address](#input\_vault\_address) | Vault address | `string` | n/a | yes |
