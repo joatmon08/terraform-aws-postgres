@@ -33,14 +33,25 @@ resource "boundary_target" "database" {
     boundary_host_set_static.database.id
   ]
   brokered_credential_source_ids = [
-    boundary_credential_library_vault.database.id
+    boundary_credential_library_vault.database_admin.id,
+    boundary_credential_library_vault.database_app.id
   ]
 }
 
-resource "boundary_credential_library_vault" "database" {
-  name                = "vault-database-${var.business_unit}"
-  description         = "Credential library for ${var.business_unit} databases"
+resource "boundary_credential_library_vault" "database_admin" {
+  name                = "database-admin-${var.business_unit}"
+  description         = "Admin credential library for ${var.business_unit} databases"
   credential_store_id = var.boundary_credentials_store_id
   path                = "${vault_kv_secret_v2.postgres.0.mount}/data/${vault_kv_secret_v2.postgres.0.name}"
   http_method         = "GET"
+  credential_type     = "username_password"
+}
+
+resource "boundary_credential_library_vault" "database_app" {
+  name                = "database-app-${var.business_unit}"
+  description         = "App credential library for ${var.business_unit} databases"
+  credential_store_id = var.boundary_credentials_store_id
+  path                = "${vault_mount.db.path}/creds/${vault_database_secret_backend_role.db.name}"
+  http_method         = "GET"
+  credential_type     = "username_password"
 }
