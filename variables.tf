@@ -125,6 +125,12 @@ variable "allow_major_version_upgrade" {
   default     = false
 }
 
+variable "initial_provision" {
+  type        = bool
+  description = "Initial provision"
+  default     = true
+}
+
 locals {
   tags = {
     Environment   = var.environment
