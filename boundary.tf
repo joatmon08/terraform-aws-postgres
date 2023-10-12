@@ -44,7 +44,7 @@ resource "boundary_target" "database_app" {
   scope_id                 = var.boundary_scope_id
   ingress_worker_filter    = "\"rds\" in \"/tags/type\""
   egress_worker_filter     = "\"${var.org_name}\" in \"/tags/type\""
-  session_connection_limit = 2
+  session_connection_limit = -1
   default_port             = 5432
   host_source_ids = [
     boundary_host_set_static.database.id
