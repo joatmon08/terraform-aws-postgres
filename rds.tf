@@ -36,4 +36,11 @@ resource "aws_db_instance" "database" {
   allow_major_version_upgrade = var.allow_major_version_upgrade
 
   tags = local.tags
+
+  lifecycle {
+    precondition {
+      condition     = floor(tonumber(data.aws_db_instance.check.engine_version)) != floor(tonumber(var.postgres_db_version))
+      error_message = "test and upgrade database separately for major version upgrades"
+    }
+  }
 }

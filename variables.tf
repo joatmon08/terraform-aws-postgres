@@ -59,7 +59,7 @@ variable "vault_namespace" {
 
 variable "postgres_db_version" {
   type        = string
-  default     = "14.9"
+  default     = "13.11"
   description = "PostgreSQL version"
 }
 
@@ -122,7 +122,7 @@ variable "additional_service_account_names" {
 variable "allow_major_version_upgrade" {
   type        = bool
   description = "Allow major version upgrades of database"
-  default     = true
+  default     = false
 }
 
 locals {
