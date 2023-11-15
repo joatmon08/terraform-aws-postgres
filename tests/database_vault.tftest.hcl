@@ -53,5 +53,3 @@ run "database" {
     error_message = "Database service not registered in Consul"
   }
 }
-
-## Boundary has no data sources

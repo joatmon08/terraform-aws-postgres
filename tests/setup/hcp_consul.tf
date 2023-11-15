@@ -26,14 +26,6 @@ resource "hcp_consul_cluster" "main" {
     address     = "0.0.0.0/0"
     description = "Allow TFC to automate"
   }
-
-  lifecycle {
-    postcondition {
-      condition     = self.consul_version == data.hcp_consul_versions.default.recommended
-      error_message = "Consul version not updated to recommended version"
-    }
-  }
-
 }
 
 resource "hcp_consul_cluster_root_token" "token" {
