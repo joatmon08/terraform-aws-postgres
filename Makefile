@@ -5,7 +5,7 @@ setup_test:
 	cd tests/configure && terraform apply -auto-approve
 
 run_test:
-	./terraform test -var-file=./tests/secrets.auto.tfvars -var-file=./tests/boundary.auto.tfvars
+	terraform test -var-file=./tests/secrets.auto.tfvars -var-file=./tests/boundary.auto.tfvars
 
 clean:
 	cd tests/configure && terraform destroy -auto-approve

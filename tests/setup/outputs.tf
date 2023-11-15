@@ -10,6 +10,7 @@ consul_token      = "${hcp_consul_cluster_root_token.token.secret_id}"
 vault_address     = "${hcp_vault_cluster.main.vault_public_endpoint_url}"
 vault_token       = "${hcp_vault_cluster_admin_token.cluster.token}"
 vault_namespace   = "${hcp_vault_cluster.main.namespace}"
+org_name          = "${var.name}"
 EOT
   filename = "../secrets.auto.tfvars"
 }
