@@ -59,7 +59,7 @@ variable "vault_namespace" {
 
 variable "postgres_db_version" {
   type        = string
-  default     = "14.9"
+  default     = "16.1"
   description = "PostgreSQL version"
 }
 
